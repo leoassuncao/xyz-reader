@@ -15,7 +15,6 @@ public class Config {
             url = new URL("https://nspf.github.io/XYZReader/data.json" );
         } catch (MalformedURLException ignored) {
             // TODO: throw a real error
-            Log.e(TAG, "Please check your internet connection.");
         }
 
         BASE_URL = url;
