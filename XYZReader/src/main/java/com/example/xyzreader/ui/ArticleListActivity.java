@@ -39,7 +39,6 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
     private RecyclerView mRecyclerView;
     private CoordinatorLayout mCoordinatorLayout;
     private RecipesAdapter adapter;
-    private AppBarLayout paralexBar;
     private boolean mIsRefreshing = false;
 
     @Override
@@ -49,7 +48,6 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        paralexBar = (AppBarLayout) findViewById(R.id.toolbar_container);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.list_content);

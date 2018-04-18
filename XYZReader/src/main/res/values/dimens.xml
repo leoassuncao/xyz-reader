@@ -27,5 +27,7 @@
     <dimen name="title_size_tab">24sp</dimen>
     <dimen name="appbar_layout_size">260dp</dimen>
     <dimen name="init_scroll_pos">40dp</dimen>
+    <dimen name="default_text_margin">4dp</dimen>
+
 
 </resources>

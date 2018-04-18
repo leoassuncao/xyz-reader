@@ -44,9 +44,9 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
                 DateUtils.getRelativeTimeSpanString(
                         mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                         System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                        DateUtils.FORMAT_ABBREV_ALL).toString()
-                        + " by "
-                        + mCursor.getString(ArticleLoader.Query.AUTHOR));
+                        DateUtils.FORMAT_ABBREV_ALL).toString());
+        holder.authorTextView.setText(mCursor.getString(ArticleLoader.Query.AUTHOR));
+
         holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         Glide.clear(holder.thumbnailView);
         Glide.with(holder.thumbnailView.getContext())
@@ -62,7 +62,7 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
 
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        int defaultColor = 0xFF333333;
+                        int defaultColor = 0xFFFFFFFF;
                         holder.itemView.setBackgroundColor(defaultColor);
                         return false;
                     }
@@ -102,12 +102,14 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
          DynamicHeightNetworkImageView thumbnailView;
          TextView titleView;
          TextView subtitleView;
+         TextView authorTextView;
 
          ViewHolder(View view) {
             super(view);
             thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.article_title);
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
+             authorTextView = (TextView) view.findViewById(R.id.authorTextView);
         }
     }
 

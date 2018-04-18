@@ -54,9 +54,7 @@ public class ArticleDetailFragment extends Fragment implements
     private long mItemId;
     private View mRootView;
     private CoordinatorLayout mCoordinatorLayout;
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
     private Toolbar mToolbar;
-    private View mPhotoContainerView;
     private ImageView mPhotoView;
     private FloatingActionButton shareActionButton;
     private TextView bylineView;
@@ -114,13 +112,11 @@ public class ArticleDetailFragment extends Fragment implements
         mCoordinatorLayout = (CoordinatorLayout)
                 mRootView.findViewById(R.id.draw_insets_frame_layout);
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
-        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
         shareActionButton = (FloatingActionButton) mRootView.findViewById(R.id.share_fab);
         titleView = (TextView) mRootView.findViewById(R.id.article_title);
         bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bodyView = (TextView) mRootView.findViewById(R.id.article_body);
         metaBar = (LinearLayout) mRootView.findViewById(R.id.meta_bar);
-        mCollapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
         mToolbar = (Toolbar) mRootView.findViewById(R.id.detail_toolbar);
 
 
