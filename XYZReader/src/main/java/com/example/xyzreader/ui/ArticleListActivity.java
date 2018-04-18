@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -126,9 +127,5 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
     @Override
     public void onRefresh() {
         startService(new Intent(this, UpdaterService.class));
-        Snackbar.make(mCoordinatorLayout, R.string.refreshed_string, Snackbar.LENGTH_LONG)
-                .setAction(R.string.OK, null)
-                .setActionTextColor(Color.GREEN)
-                .show();
     }
 }
