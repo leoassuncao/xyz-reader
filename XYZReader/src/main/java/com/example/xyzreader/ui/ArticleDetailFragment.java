@@ -24,6 +24,7 @@ import android.text.format.DateUtils;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class ArticleDetailFragment extends Fragment implements
     private TextView titleView;
     private TextView bodyView;
     private LinearLayout metaBar;
+    private CollapsingToolbarLayout mCollapsingToolbarLayout;
 
 
     /**
@@ -117,6 +119,7 @@ public class ArticleDetailFragment extends Fragment implements
         bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bodyView = (TextView) mRootView.findViewById(R.id.article_body);
         metaBar = (LinearLayout) mRootView.findViewById(R.id.meta_bar);
+        mCollapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
         mToolbar = (Toolbar) mRootView.findViewById(R.id.detail_toolbar);
 
 
@@ -134,7 +137,6 @@ public class ArticleDetailFragment extends Fragment implements
     @Override
     public void onStart() {
         super.onStart();
-        // animating the share botton
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             shareActionButton.setAlpha(0f);
             shareActionButton.setScaleX(0f);
@@ -155,7 +157,7 @@ public class ArticleDetailFragment extends Fragment implements
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         mCursor = cursor;
         if (mCursor != null && !mCursor.moveToFirst()) {
-            Log.e(TAG, "Error reading item detail cursor");
+            Log.e(TAG, getResources().getString(R.string.error_reading_cursor));
             mCursor.close();
             mCursor = null;
         }
@@ -171,7 +173,7 @@ public class ArticleDetailFragment extends Fragment implements
                             mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
                             System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                             DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by <font color='#ffffff'>"
+                            + " - <font color='#ffffff'>"
                             + mCursor.getString(ArticleLoader.Query.AUTHOR)
                             + "</font>"));
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
@@ -188,6 +190,7 @@ public class ArticleDetailFragment extends Fragment implements
             }
 
             titleView.setText(title);
+            mPhotoView.setTransitionName(Integer.toString(ArticleLoader.Query._ID ));
             Glide.with(getActivity())
                     .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -221,7 +224,7 @@ public class ArticleDetailFragment extends Fragment implements
                 public void onClick(View view) {
                     startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                             .setType("text/plain")
-                            .setText("Some sample text")
+                            .setText(getResources().getString(R.string.placeholder_text))
                             .getIntent(), getString(R.string.action_share)));
 
                 }

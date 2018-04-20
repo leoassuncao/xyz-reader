@@ -90,6 +90,7 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
         mRecyclerView.clearOnScrollListeners();
     }

@@ -35,7 +35,8 @@
                     android:layout_gravity="center|bottom"
                     android:contentDescription="@string/app_name"
                     android:src="@drawable/logo"
-                    android:transitionName="@string/shared_transation" />
+
+                    />
 
             </LinearLayout>
         </android.support.v7.widget.Toolbar>

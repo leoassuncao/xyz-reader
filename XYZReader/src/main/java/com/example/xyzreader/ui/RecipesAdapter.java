@@ -1,13 +1,18 @@
 package com.example.xyzreader.ui;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +51,7 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
                         System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
                         DateUtils.FORMAT_ABBREV_ALL).toString());
         holder.authorTextView.setText(mCursor.getString(ArticleLoader.Query.AUTHOR));
-
+        holder.thumbnailView.setTransitionName(Integer.toString(ArticleLoader.Query._ID ));
         holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         Glide.clear(holder.thumbnailView);
         Glide.with(holder.thumbnailView.getContext())
@@ -77,18 +82,19 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View views) {
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    Bundle  bundle = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation((Activity) mContext, vh.thumbnailView, vh.thumbnailView.getTransitionName()).toBundle();
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) mContext, vh.thumbnailView, vh.thumbnailView.getTransitionName());
                     parent.getContext().startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))), bundle);
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))), options.toBundle());
                 } else {
                     parent.getContext().startActivity(new Intent(Intent.ACTION_VIEW,
                             ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
                 }
 
-            }
+                }
+
         });
         return vh;
     }
@@ -99,7 +105,7 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
     }
 
      static class ViewHolder extends RecyclerView.ViewHolder {
-         DynamicHeightNetworkImageView thumbnailView;
+         public DynamicHeightNetworkImageView thumbnailView;
          TextView titleView;
          TextView subtitleView;
          TextView authorTextView;

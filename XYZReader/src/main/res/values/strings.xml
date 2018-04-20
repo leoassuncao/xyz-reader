@@ -15,7 +15,11 @@
     <string name="errer_message">Erreur Inconnue</string>
     <string name="OK">OK</string>
     <string name="refreshed_string">Refreshed</string>
-    <string name="shared_transation">shared_transition</string>
+    <string name="shared_transition">shared_transition</string>
+    <string name="error_reading_cursor">Error reading item detail cursor</string>
+    <string name="placeholder_text">Placeholder text</string>
+
+
 
 
 </resources>
