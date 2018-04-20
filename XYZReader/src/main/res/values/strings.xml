@@ -16,6 +16,8 @@
     <string name="placeholder_text">Placeholder text</string>
     <string name="could_not_move">Could not move Cursor to position: </string>
     <string name="cursor_is_valid">Cursor is valid</string>
+    <string name="line"> - </string>
+
 
 
 </resources>
