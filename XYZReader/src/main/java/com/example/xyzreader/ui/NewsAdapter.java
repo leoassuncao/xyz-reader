@@ -1,15 +1,11 @@
 package com.example.xyzreader.ui;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -31,10 +27,10 @@ import com.example.xyzreader.data.ItemsContract;
  * Created by leonardo.filho on 18/04/2018.
  */
 
-public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolder> {
+public class NewsAdapter extends RecyclerViewAdapter<NewsAdapter.ViewHolder> {
     private Context mContext;
 
-     RecipesAdapter(Cursor cursor, Context context) {
+     NewsAdapter(Cursor cursor, Context context) {
         super(cursor);
         mContext = context;
     }
@@ -55,21 +51,7 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
         Glide.clear(holder.thumbnailView);
         Glide.with(holder.thumbnailView.getContext())
                 .load(thumb)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontAnimate()
                 .centerCrop()
-                .listener(new RequestListener<String, GlideDrawable>() {
-                    @Override
-                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
-                        return false;
-                    }
-                    @Override
-                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        int defaultColor = 0xFFFFFFFF;
-                        holder.itemView.setBackgroundColor(defaultColor);
-                        return false;
-                    }
-                })
                 .into(holder.thumbnailView);
     }
 
@@ -81,15 +63,12 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation((Activity) mContext, vh.thumbnailView, vh.thumbnailView.getTransitionName());
+                Log.d("leo", "clicked:" + parent.getContext());
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity)parent.getContext(), vh.thumbnailView,
+                    vh.thumbnailView.getTransitionName());
                     parent.getContext().startActivity(new Intent(Intent.ACTION_VIEW,
                             ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))), options.toBundle());
-                } else {
-                    parent.getContext().startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
-                }
+
                 }
 
         });

@@ -184,7 +184,7 @@ public class ArticleDetailFragment extends Fragment implements
                 mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        getActivity().finish();
+                        getActivity().onBackPressed();
                     }
                 });
             }
@@ -193,9 +193,7 @@ public class ArticleDetailFragment extends Fragment implements
             mPhotoView.setTransitionName(Integer.toString(ArticleLoader.Query._ID ));
             Glide.with(getActivity())
                     .load(mCursor.getString(ArticleLoader.Query.PHOTO_URL))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()
-                    .dontAnimate()
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {

@@ -7,19 +7,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.widget.Toast;
 
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -39,7 +34,7 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private RecyclerView mRecyclerView;
     private CoordinatorLayout mCoordinatorLayout;
-    private RecipesAdapter adapter;
+    private NewsAdapter adapter;
     private boolean mIsRefreshing = false;
 
     @Override
@@ -59,7 +54,7 @@ public class ArticleListActivity extends AppCompatActivity implements OnRefreshL
         StaggeredGridLayoutManager staggeredGridLayoutManager =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(staggeredGridLayoutManager);
-        adapter = new RecipesAdapter(null, this);
+        adapter = new NewsAdapter(null, this);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
         getLoaderManager().initLoader(0, null, this);
