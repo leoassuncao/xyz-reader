@@ -230,7 +230,7 @@ public class ArticleDetailFragment extends Fragment implements
                 }
             });
         } else {
-            Snackbar.make(mCoordinatorLayout, R.string.errer_message, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(mCoordinatorLayout, R.string.error_message, Snackbar.LENGTH_LONG).show();
         }
 
 

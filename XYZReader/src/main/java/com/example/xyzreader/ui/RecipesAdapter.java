@@ -39,7 +39,6 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
         mContext = context;
     }
 
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, final Cursor cursor) {
         Cursor mCursor = cursor;
@@ -64,7 +63,6 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
                     public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
                         return false;
                     }
-
                     @Override
                     public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                         int defaultColor = 0xFFFFFFFF;
@@ -92,7 +90,6 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
                     parent.getContext().startActivity(new Intent(Intent.ACTION_VIEW,
                             ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
                 }
-
                 }
 
         });
@@ -114,8 +111,7 @@ public class RecipesAdapter extends RecyclerViewAdapter<RecipesAdapter.ViewHolde
             super(view);
             thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.article_title);
-            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
-             authorTextView = (TextView) view.findViewById(R.id.authorTextView);
+            subtitleView = (TextView) view.findViewById(R.id.article_subtitle);authorTextView = (TextView) view.findViewById(R.id.authorTextView);
         }
     }
 
