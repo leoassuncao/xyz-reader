@@ -182,14 +182,7 @@ public class ArticleDetailFragment extends Fragment implements
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY)));
             if (mToolbar != null) {
                 ((ArticleDetailActivity) getActivity()).setSupportActionBar(mToolbar);
-                mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
                 ((ArticleDetailActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
-                mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        getActivity().onBackPressed();
-                    }
-                });
             }
 
             titleView.setText(title);
